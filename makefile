@@ -2,7 +2,7 @@
 MAKEFLAGS += --no-print-directory
 
 IMAGE = /dev/disk/by-uuid/3AEE-1803
-IMAGEMOUNTPATH = mnt/
+IMAGEMOUNTPATH = /mnt
 BUILDPATH = ~/edk2/Build/AppPkg/DEBUG_GCC5/X64/AppPkg/Applications/ukrnldr/ukrnldr/OUTPUT
 
 DD = dd
@@ -15,7 +15,6 @@ install:
 	@$(MAKE) -C . image
 	
 image:
-	@./get_time.sh
 	@$(MAKE) -C . mount
 	-@$(MAKE) -C . image_main
 	@$(MAKE) -C . umount
@@ -26,10 +25,10 @@ mount:
 umount:
 	$(SUDO) umount $(IMAGEMOUNTPATH)
 	
-image_main: .refresh
+image_main:
 	#@$(MAKE) -C boot image_main
 	cp $(BUILDPATH)/ukrnldr.efi ~/bootx64.efi
-	$(SUDO)	mv ~/bootx64.efi /mnt/EFI/BOOT/bootx64.efi
+	$(SUDO) mv ~/bootx64.efi /mnt/EFI/BOOT/bootx64.efi
 	
 clean:
 	@$(MAKE) -C . clean_backup
