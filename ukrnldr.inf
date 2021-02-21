@@ -9,6 +9,8 @@
 
 [Sources]
   ukrnldr.c
+  video.c
+  shared.h
 
 [Packages]
   MdePkg/MdePkg.dec

@@ -1,7 +1,5 @@
-#include <Uefi.h>
-#include <Library/UefiLib.h>
-#include <Library/UefiBootServicesTableLib.h>
 
+#include "shared.h"
 
 EFI_STATUS EFIAPI UefiMain(IN EFI_HANDLE ImageHandle, IN EFI_SYSTEM_TABLE *SystemTable)
 {
@@ -19,7 +17,7 @@ EFI_STATUS EFIAPI UefiMain(IN EFI_HANDLE ImageHandle, IN EFI_SYSTEM_TABLE *Syste
 	{
 		gGraphicsOutput->QueryMode(gGraphicsOutput,i,&InfoSize,&Info);
 
-		if((Info->PixelFormat == 1) && (Info->HorizontalResolution * Info->VerticalResolution > H_V_Resolution))
+		if((Info->PixelFormat == PixelRedGreenBlueReserved8BitPerColor) && (Info->HorizontalResolution * Info->VerticalResolution > H_V_Resolution))
 		{
 			H_V_Resolution = Info->HorizontalResolution * Info->VerticalResolution;
 			MaxResolutionMode = i;
@@ -28,8 +26,8 @@ EFI_STATUS EFIAPI UefiMain(IN EFI_HANDLE ImageHandle, IN EFI_SYSTEM_TABLE *Syste
 		gBS->FreePool(Info);
 	}
 
-	gGraphicsOutput->SetMode(gGraphicsOutput,MaxResolutionMode);
-	gBS->LocateProtocol(&gEfiGraphicsOutputProtocolGuid,NULL,(VOID **)&gGraphicsOutput);
+	gGraphicsOutput->SetMode(gGraphicsOutput, MaxResolutionMode);
+	gBS->LocateProtocol(&gEfiGraphicsOutputProtocolGuid, NULL, (VOID **)&gGraphicsOutput);
 	Print(L"Current Mode: %02d, Version: %x, Format: %d, Horizontal: %d, Vertical: %d, ScanLine: %d, FrameBufferBase: %010lx, FrameBufferSize: %010lx\n", \
 	gGraphicsOutput->Mode->Mode, gGraphicsOutput->Mode->Info->Version, gGraphicsOutput->Mode->Info->PixelFormat, gGraphicsOutput->Mode->Info->HorizontalResolution, \
 	gGraphicsOutput->Mode->Info->VerticalResolution, gGraphicsOutput->Mode->Info->PixelsPerScanLine, gGraphicsOutput->Mode->FrameBufferBase, gGraphicsOutput->Mode->FrameBufferSize);
@@ -40,3 +38,7 @@ EFI_STATUS EFIAPI UefiMain(IN EFI_HANDLE ImageHandle, IN EFI_SYSTEM_TABLE *Syste
 
 	return EFI_SUCCESS;
 }
+
+
+
+
