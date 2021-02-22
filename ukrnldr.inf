@@ -1,26 +1,31 @@
 
 [Defines]
-  INF_VERSION                    = 0x00010005
-  BASE_NAME                      = ukrnldr
-  FILE_GUID                      = 6987936E-f301-4a63-9661-fc6030dcc833
-  MODULE_TYPE                    = UEFI_APPLICATION
-  VERSION_STRING                 = 1.0
-  ENTRY_POINT                    = UefiMain
+	INF_VERSION						= 0x00010005
+	BASE_NAME						= ukrnldr
+	FILE_GUID						= 6987936E-f301-4a63-9661-fc6030dcc833
+	MODULE_TYPE						= UEFI_APPLICATION
+	VERSION_STRING					= 1.0
+	ENTRY_POINT						= UefiMain
 
 [Sources]
-  ukrnldr.c
-  video.c
-  shared.h
+
+# source
+	ukrnldr.c
+	video.c
+	memory.c
+
+# header
+	shared.h
 
 [Packages]
-  MdePkg/MdePkg.dec
+	MdePkg/MdePkg.dec
 
 [LibraryClasses]
-  UefiApplicationEntryPoint
-  UefiLib
+	UefiApplicationEntryPoint
+	UefiLib
 
 [Protocols]
-  gEfiGraphicsOutputProtocolGuid
+	gEfiGraphicsOutputProtocolGuid
 
 [Guids]
 
