@@ -2,8 +2,8 @@
 
 EFI_STATUS EFIAPI VideoInit(IN EFI_HANDLE ImageHandle, IN EFI_SYSTEM_TABLE *SystemTable, UINTN *PosX, UINTN *PosY)
 {
-    EFI_GRAPHICS_OUTPUT_BLT_PIXEL ForeGround = {0xff, 0x00, 0x00, 0x00};
-    EFI_GRAPHICS_OUTPUT_PROTOCOL* gGraphicsOutput = 0;
+	EFI_GRAPHICS_OUTPUT_BLT_PIXEL ForeGround = {0xff, 0x00, 0x00, 0x00};
+	EFI_GRAPHICS_OUTPUT_PROTOCOL* gGraphicsOutput = 0;
 	EFI_GRAPHICS_OUTPUT_MODE_INFORMATION* Info = 0;
 	UINTN InfoSize = 0;
 	int i = 0;
@@ -34,8 +34,8 @@ EFI_STATUS EFIAPI VideoInit(IN EFI_HANDLE ImageHandle, IN EFI_SYSTEM_TABLE *Syst
 
 	gBS->CloseProtocol(gGraphicsOutput, &gEfiGraphicsOutputProtocolGuid, ImageHandle, NULL);
 
-    PrintXY(*PosX, *PosY, &ForeGround, NULL, L"Video Module Finish");
-    *PosY += 19;
+	//PrintXY(*PosX, *PosY, &ForeGround, NULL, L"Video Module Finish");
+	//*PosY += 19;
 
-    return EFI_SUCCESS;
+	return EFI_SUCCESS;
 }
