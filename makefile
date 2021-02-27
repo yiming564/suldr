@@ -4,6 +4,7 @@ MAKEFLAGS += --no-print-directory
 IMAGE = /dev/disk/by-uuid/3AEE-1803
 IMAGEMOUNTPATH = /mnt
 BUILDPATH = ~/edk2/Build/AppPkg/DEBUG_GCC5/X64/AppPkg/Applications/ukrnldr/ukrnldr/OUTPUT
+DEMOPATH = ~/edk2/Build/AppPkg/DEBUG_GCC5/X64/AppPkg/Applications/Test/Test/OUTPUT
 
 DD = dd
 DDFLAGS = conv=notrunc 2>> build.log
@@ -28,6 +29,7 @@ umount:
 image_main:
 	#@$(MAKE) -C boot image_main
 	cp $(BUILDPATH)/ukrnldr.efi ~/bootx64.efi
+	cp $(DEMOPATH)/Test.efi ~/krnlx64.efi
 	$(SUDO) mv ~/bootx64.efi /mnt/EFI/BOOT/bootx64.efi
 	
 clean:

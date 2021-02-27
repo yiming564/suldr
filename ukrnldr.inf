@@ -13,6 +13,7 @@
 	ukrnldr.c
 	video.c
 	memory.c
+	loader.c
 
 # header
 	shared.h
@@ -25,8 +26,11 @@
 	UefiLib
 
 [Protocols]
+	gEfiDevicePathProtocolGuid
+	gEfiDevicePathToTextProtocolGuid
+	gEfiSimpleFileSystemProtocolGuid
 	gEfiGraphicsOutputProtocolGuid
 
 [Guids]
-
+	gEfiFileInfoGuid
 
