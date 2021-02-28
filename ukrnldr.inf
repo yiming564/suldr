@@ -29,6 +29,7 @@
 	gEfiDevicePathProtocolGuid
 	gEfiDevicePathToTextProtocolGuid
 	gEfiSimpleFileSystemProtocolGuid
+	gEfiLoadedImageProtocolGuid
 	gEfiGraphicsOutputProtocolGuid
 
 [Guids]

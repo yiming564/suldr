@@ -33,6 +33,8 @@ EFI_DEVICE_PATH_PROTOCOL* WalkthroughDevicePath(EFI_DEVICE_PATH_PROTOCOL* DevPat
 
 EFI_STATUS EFIAPI LoaderInit(IN EFI_HANDLE ImageHandle, IN EFI_SYSTEM_TABLE *SystemTable)
 {
+	Print(L"Debug Started 0000\n");
+
 	EFI_LOADED_IMAGE        *LoadedImage;
 	EFI_DEVICE_PATH         *DevicePath;
 	EFI_FILE_IO_INTERFACE   *Vol;
@@ -63,9 +65,7 @@ EFI_STATUS EFIAPI LoaderInit(IN EFI_HANDLE ImageHandle, IN EFI_SYSTEM_TABLE *Sys
 	BufferSize = sizeof(EFI_FILE_INFO) + sizeof(CHAR16) * 100;
 	gBS->AllocatePool(EfiRuntimeServicesData, BufferSize, (VOID **)&FileInfo);
 	FileHandle->GetInfo(FileHandle, &gEfiFileInfoGuid, &BufferSize, FileInfo);
-	Print(L"\tFileName: %s\t Size: %d\t FileSize: %d\t Physical Size: %d\n", FileInfo->FileName, FileInfo->Size, FileInfo->FileSize, FileInfo->PhysicalSize);
-
-	Print(L"Read kernel file to memory\n");
+	Print(L"FileName: %s Size: %d FileSize: %d Physical Size: %d\n", FileInfo->FileName, FileInfo->Size, FileInfo->FileSize, FileInfo->PhysicalSize);
 
 	gBS->AllocatePages(AllocateAddress, EfiLoaderData, (FileInfo->FileSize + 0x1000 - 1) / 0x1000, &pages);
 	BufferSize = FileInfo->FileSize;
