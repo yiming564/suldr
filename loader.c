@@ -56,7 +56,8 @@ EFI_STATUS EFIAPI LoaderInit(IN EFI_HANDLE ImageHandle, IN EFI_SYSTEM_TABLE *Sys
 
 	gBS->HandleProtocol(LoadedImage->DeviceHandle, &gEfiSimpleFileSystemProtocolGuid, (VOID *)&Vol);
 	Vol->OpenVolume(Vol, &RootFs);
-	RootFs->Open(RootFs, &FileHandle, (CHAR16 *)L"kernel.bin", EFI_FILE_MODE_READ, 0);
+//	RootFs->Open(RootFs, &FileHandle, (CHAR16 *)L"kernel.bin", EFI_FILE_MODE_READ, 0);
+	RootFs->Open(RootFs, &FileHandle, (CHAR16 *)L"EFI/BOOT/bootx64.efi", EFI_FILE_MODE_READ, 0);
 
 	EFI_FILE_INFO *FileInfo;
 	UINTN BufferSize = 0;
@@ -78,6 +79,6 @@ EFI_STATUS EFIAPI LoaderInit(IN EFI_HANDLE ImageHandle, IN EFI_SYSTEM_TABLE *Sys
 	gBS->CloseProtocol(LoadedImage->DeviceHandle, &gEfiDevicePathProtocolGuid, ImageHandle, NULL);
 	gBS->CloseProtocol(ImageHandle, &gEfiLoadedImageProtocolGuid, ImageHandle, NULL);
 	gBS->CloseProtocol(Device2TextProtocol, &gEfiDevicePathToTextProtocolGuid, ImageHandle, NULL);
-
+	Print(L"Loader Module Finished\n\n");
 	return EFI_SUCCESS;
 }
