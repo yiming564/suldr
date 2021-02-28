@@ -33,8 +33,6 @@ EFI_DEVICE_PATH_PROTOCOL* WalkthroughDevicePath(EFI_DEVICE_PATH_PROTOCOL* DevPat
 
 EFI_STATUS EFIAPI LoaderInit(IN EFI_HANDLE ImageHandle, IN EFI_SYSTEM_TABLE *SystemTable)
 {
-	Print(L"Debug Started 0000\n");
-
 	EFI_LOADED_IMAGE        *LoadedImage;
 	EFI_DEVICE_PATH         *DevicePath;
 	EFI_FILE_IO_INTERFACE   *Vol;
