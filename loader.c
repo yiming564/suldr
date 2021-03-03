@@ -45,6 +45,7 @@ EFI_STATUS EFIAPI LoaderInit(IN EFI_HANDLE ImageHandle, IN EFI_SYSTEM_TABLE *Sys
 	gBS->HandleProtocol(ImageHandle, &gEfiLoadedImageProtocolGuid, (VOID *)&LoadedImage);
 	gBS->HandleProtocol(LoadedImage->DeviceHandle, &gEfiDevicePathProtocolGuid, (VOID *)&DevicePath);
 
+
 	CHAR16* TextDevicePath = Device2TextProtocol->ConvertDevicePathToText(DevicePath, FALSE, TRUE);
 	Print(L"%s\n", TextDevicePath);
 	if(TextDevicePath)
