@@ -20,10 +20,12 @@
 
 [Packages]
 	MdePkg/MdePkg.dec
+	FatPkg/FatPkg.dec
 
 [LibraryClasses]
 	UefiApplicationEntryPoint
 	UefiLib
+	UefiBootServicesTableLib
 
 [Protocols]
 	gEfiDevicePathProtocolGuid

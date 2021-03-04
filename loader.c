@@ -79,4 +79,15 @@ EFI_STATUS EFIAPI LoaderInit(IN EFI_HANDLE ImageHandle, IN EFI_SYSTEM_TABLE *Sys
 	gBS->CloseProtocol(Device2TextProtocol, &gEfiDevicePathToTextProtocolGuid, ImageHandle, NULL);
 	Print(L"Loader Module Finished\n\n");
 	return EFI_SUCCESS;
+
+	status = gBS->ExitBootServices(ImageHandle,MapKey);
+    if(EFI_ERROR(status))
+    {
+        Print(L"ExitBootServices: Failed, Memory Map has Changed.\n");
+        return EFI_INVALID_PARAMETER;
+    }
+    func = (void *)0x100000;
+    func();
+
+    return EFI_SUCCESS;
 }
